@@ -13,8 +13,8 @@ SRCH =
 
 SRCS = $(SRCCPP) $(SRCC)
 OBJS = $(SRCCPP:.cpp=.o) $(SRCC:.c=.o)
-MAKEFILE = makefile
-DEPENDFILE = makefile.depend
+MAKEFILE = Makefile
+DEPENDFILE = Make.depend
 
 #
 # compile parameter
@@ -69,4 +69,4 @@ tar:
 	-@ $(TAR) $(TARGET).tar.gz $(SRCS) $(SRCH) $(MAKEFILE)
 
 # source and header file dependent
--include makefile.depend
+-include $(DEPENDFILE)
