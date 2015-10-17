@@ -60,7 +60,7 @@ $(TARGET): $(OBJS)
 
 depend:
 	-@ $(RM) $(DEPENDFILE)
-	-@ g++ -MM -MG $(SRCS) > $(DEPENDFILE)
+	-@ $(CC) -MM -MG $(SRCS) > $(DEPENDFILE)
 
 clean:
 	-@ $(RM) $(TARGET) $(DEPENDFILE) *.o *.obj *~ *.~* *.BAK
