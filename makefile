@@ -20,11 +20,12 @@ DEPENDFILE = depend.inc
 # compile parameter
 #
 CC = g++
-OPTS =
-INCLUDES =
 CFLAGS = -g -O2 -Wall -std=c++0x
-#CFLAGS = -g -O2 -Wall -fprofile-arcs -ftest-coverage
 LDFLAGS =
+#CFLAGS = -g -O2 -Wall -fprofile-arcs -ftest-coverage
+INCDIR =
+LIBDIR =
+LIBS =
 #LIBS = -lgcov
 
 #
@@ -50,13 +51,13 @@ echo:
 
 $(TARGET): $(OBJS)
 	@echo 'Making $(TARGET)...'
-	-@ $(CC) $(OPTS) -o $@ $^ $(LIBS)
+	-@ $(CC) $(LDFLAGS) -o $@ $^ $(LIBDIR) $(LIBS)
 
 .c.o:
-	$(CC) $(CFLAGS) $(INCLUDES) -c $<
+	$(CC) $(CFLAGS) -c $< $(INCDIR)
 
 .cpp.o:
-	$(CC) $(CFLAGS) $(INCLUDES) -c $<
+	$(CC) $(CFLAGS) -c $< $(INCDIR)
 
 depend:
 	-@ $(RM) $(DEPENDFILE)
