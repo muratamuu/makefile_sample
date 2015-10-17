@@ -31,7 +31,7 @@ LDFLAGS =
 # shell comannd
 #
 TAR = tar czfv
-RM = rm
+RM = rm -rf
 #RM = del
 
 # definition
