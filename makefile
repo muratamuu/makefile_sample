@@ -7,7 +7,7 @@ TARGET = a.out
 #
 # source file
 #
-SRCCPP = 
+SRCCPP =
 SRCC = main.c
 SRCH =
 
@@ -22,7 +22,7 @@ DEPENDFILE = Make.depend
 CC = g++
 OPTS =
 INCLUDES =
-CFLAGS = -g -O2 -Wall
+CFLAGS = -g -O2 -Wall -std=c++0x
 #CFLAGS = -g -O2 -Wall -fprofile-arcs -ftest-coverage
 LDFLAGS =
 #LIBS = -lgcov
