@@ -14,7 +14,7 @@ SRCH =
 SRCS = $(SRCCPP) $(SRCC)
 OBJS = $(SRCCPP:.cpp=.o) $(SRCC:.c=.o)
 MAKEFILE = Makefile
-DEPENDFILE = Make.depend
+DEPENDFILE = depend.inc
 
 #
 # compile parameter
