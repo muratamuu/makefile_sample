@@ -7,8 +7,8 @@ TARGET = a.out
 #
 # source file
 #
-SRCCPP =
-SRCC = main.c
+SRCCPP = main.cpp
+SRCC =
 SRCH =
 
 SRCS = $(SRCCPP) $(SRCC)
@@ -61,7 +61,7 @@ $(TARGET): $(OBJS)
 
 depend:
 	-@ $(RM) $(DEPENDFILE)
-	-@ $(CC) -MM -MG $(SRCS) > $(DEPENDFILE)
+	-@ $(CC) $(CFLAGS) -MM -MG $(SRCS) > $(DEPENDFILE)
 
 clean:
 	-@ $(RM) $(TARGET) $(DEPENDFILE) *.o *.obj *~ *.~* *.BAK
