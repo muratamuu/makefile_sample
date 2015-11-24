@@ -9,40 +9,38 @@ TARGET = a.out
 #
 SRCCPP = main.cpp
 SRCC =
-SRCH =
+MAKEFILE = makefile
 
 SRCS = $(SRCCPP) $(SRCC)
 OBJS = $(SRCCPP:.cpp=.o) $(SRCC:.c=.o)
-MAKEFILE = Makefile
-DEPENDFILE = depend.inc
+DEPENDFILES = $(SRCCPP:.cpp=.d) $(SRCC:.c=.d)
 
 #
 # compile parameter
 #
 CC = g++
-CFLAGS = -g -O2 -Wall -std=c++0x
+CFLAGS = -g -O2 -Wall -std=c++11
 LDFLAGS =
 #CFLAGS = -g -O2 -Wall -fprofile-arcs -ftest-coverage
 INCDIR =
 LIBDIR =
 LIBS =
-#LIBS = -lgcov
+#LIBS = -lgcov -lpthread
 
 #
 # shell comannd
 #
-TAR = tar czfv
 RM = rm -rf
 #RM = del
 
 # definition
-.SUFFIXES: .cxx .cpp .c .o .h
-.PHONY: clean all depend echo
+.SUFFIXES: .cxx .cpp .c .o .h .d
+.PHONY: clean all echo
 
 #
 # Rules
 #
-all: depend $(TARGET)
+all: $(TARGET)
 
 echo:
 	@echo 'TARGET:$(TARGET)'
@@ -54,20 +52,13 @@ $(TARGET): $(OBJS)
 	-@ $(CC) $(LDFLAGS) -o $@ $^ $(LIBDIR) $(LIBS)
 
 .c.o:
-	$(CC) $(CFLAGS) -c $< $(INCDIR)
+	$(CC) $(CFLAGS) -MMD -c $< $(INCDIR) -o $@
 
 .cpp.o:
-	$(CC) $(CFLAGS) -c $< $(INCDIR)
-
-depend:
-	-@ $(RM) $(DEPENDFILE)
-	-@ $(CC) $(CFLAGS) -MM -MG $(SRCS) > $(DEPENDFILE)
+	$(CC) $(CFLAGS) -MMD -c $< $(INCDIR) -o $@
 
 clean:
-	-@ $(RM) $(TARGET) $(DEPENDFILE) *.o *.obj *~ *.~* *.BAK
-
-tar:
-	-@ $(TAR) $(TARGET).tar.gz $(SRCS) $(SRCH) $(MAKEFILE)
+	-@ $(RM) $(TARGET) $(DEPENDFILES) $(OBJS) *.d *.o *.obj *~ *.~* *.BAK
 
 # source and header file dependent
--include $(DEPENDFILE)
+-include $(DEPENDFILES)
