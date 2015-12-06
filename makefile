@@ -35,7 +35,7 @@ RM = rm -rf
 
 # definition
 .SUFFIXES: .cxx .cpp .c .o .h .d
-.PHONY: clean all echo
+.PHONY: clean all echo check-syntax
 
 #
 # Rules
@@ -59,6 +59,9 @@ $(TARGET): $(OBJS)
 
 clean:
 	-@ $(RM) $(TARGET) $(DEPENDFILES) $(OBJS) *.d *.o *.obj *~ *.~* *.BAK
+
+check-syntax:
+	$(CC) $(CFLAGS) -fsyntax-only $(CHK_SOURCES)
 
 # source and header file dependent
 -include $(DEPENDFILES)
