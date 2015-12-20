@@ -57,6 +57,7 @@ RM = rm -rf
 all: $(TARGET)
 
 echo:
+	@echo 'OSDEF:$(OSDEF)'
 	@echo 'TARGET:$(TARGET)'
 	@echo 'SRCS:$(SRCS)'
 	@echo 'OBJS:$(OBJS)'
