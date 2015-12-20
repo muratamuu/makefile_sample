@@ -1,3 +1,17 @@
+#
+# OS/ARCH
+#
+ifeq ($(OS), Windows_NT)
+OSDEF = WINDOWS
+else
+UNAME = $(shell uname)
+ifeq ($(UNAME), Linux)
+OSDEF = LINUX
+endif
+ifeq ($(UNAME), Darwin)
+OSDEF = MACOSX
+endif
+endif
 
 #
 # target
